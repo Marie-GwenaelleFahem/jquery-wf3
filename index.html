@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="container-fluid bg-secondary text-light">
+        <div class="container">
+            jQuery : Premiers pas
+        </div>
+    </header>
+    <!-- FIN HEADER -->
+    <!-- CONTENU -->
+    <div class="container">
+        <!-- PREMIERE LIGNE -->
+        <div class="row">
+            <h2 class="w-100">Modification de styles css</h2>
+            <p class="d-block w-100">Utilisation de la méthode .css() de jQuery afin de manipuler les propriétés css des
+                objets du DOM</p>
+            <div class="exemple1">Bonjour, nous sommes lundi</div>
+            <script>
+                // On récupère l'objet de la classe "exemple1" à l'aide du sélécteut de jQuery $("")
+                $(".exemple1").css("background-color", "#ff0000");
+                // Dans la ligne ci-dessus la méthode .css est utilisée sous forme de setter (fonction qui applique quelque chose aux objets) parce qu'on lui donne deux informations (paramètres) dans ses parenthèses. Ici on lui donne le nom d'une propriété css (background-color) ainsi qu'une valeur pour cette propriété (#ff0000)
+                // On aurait pu utiliser la méthode .css sous forme de getter (fonction qui récupère une information sur un objet) en ne lui passant qu'un paramètre, de sorte que si on faisait .css("background-color") on n'appliquerait pas une couleur mais on récuperait la valeur actuelle de cette propriété sur l'objet 
+            </script>
+        </div>
+        <!-- FIN PREMIERE LIGNE -->
+        <!-- SECONDE LIGNE -->
+        <div class="row">
+            <p class="d-block w-100">
+                Utilisation de la méthode .css() de jQuery afin de changer plusieurs propriétés d'un objet
+            </p>
+            <div class="exemple2">La couleur de fond et la couleur de texte sont ajoutés par jQuery</div>
+            <script>
+                $(".exemple2").css("background-color", "blue");
+                $(".exemple2").css("color", "white");
+            </script>
+        </div>
+        <!-- FIN SECONDE LIGNE -->
+        <!-- TROISIEME LIGNE -->
+        <div class="row">
+            <p class="d-block w-100">
+                Utilisation de la méthode .css() afin de récupérer des informations sur un objet.
+            </p>
+            <div class="exemple3">La largeur de cette div dans la page est récupérée par jQuery</div>
+            <script>
+                // alert("la largeur de la div est de :" + $(".exemple3").css("width"));
+                // La méthode alert() est une méthode javascript qui ouvre une fenêtre dite "popup" dans le navigateur et elle affiche ce qu'elle contient dans les parenthèses, ici la valeur de largeur récupérer par jQuery
+                // Il est possible de cumuler une chaîne de caractère et une valeur avec le signe + ou la ,
+                console.log("la largeur de la div est de :" + $(".exemple3").css("width"));
+                // console.log permet, comme alert de renvoyer des messages avec la console, ils sont moins perturbant car ils apparaissent en tâche de fond dans l'onglet console de l'inspecteur du navigateur, ne gênant pas ou n'arrêtant pas l'éxecution du reste du code contraitrement à alert()
+                console.log("la largeur de la div est de :" + $(".exemple3").width());
+            // Ici l'utilisation de la méthode .width() permet de récuperer la valeur chiffrée et non pas une chaîne de caractères. En effet, par exemple, $(".exemple3").css("width") = 425.54px est une chaîne de caractères puisqu'il y a "px" dedans et $(".exemple3").width() = 425.54 est une valeur chiffrée.
+            // $(".exemple3").width() = parsetFloat($(".exemple3").css (width))
+            // parsetFloat (parsetInt) sont des méthodes javascript de conversion de lettres en chiffres, décimaux ou entiers (interger)
+            </script>
+        </div>
+        <!-- FIN DE TROISIEME LIGNE -->
+        <!-- QUATRIEME LIGNE -->
+        <div class="row">
+            <h2>Ajout d'écouteur d'évènement et injection dans le DOM</h2>
+            <p class="d-block w-100">
+                Cliquez sur le bouton pour voir le message.
+                Cliquez sur le bouton orange pour ajouter une phrase à la fin du message
+                Cliquez sur le bouton orange pour ajouter une phrase au début du message
+            </p>
+            <div>
+                <button id="bt1" class="btn btn-info">Cliquez !!</button>
+                <button id="bt2" class="btn btn-warning">Cliquez !!</button>
+                <button id="bt3" class="btn btn-danger">Cliquez !!</button>
+                <div id="message1">Cette div est prévue pour recevoir un message</div>
+            </div>
+            <script>
+                // Déclaration d'une fonction dans un language de script 
+                function pageDitBonjour() {
+                    // La ou les lignes à effectuer lorsque la fonction est appelée
+                    alert("bonjour")
+                }
+                // L'appel à la fonction s'effectue en l'appelant par son nom et parenthèses
+                //nomDeFonction
+                // La fonction se trouvant en paramètre de ma méthode on(event, handler) est une fonction anonyme elle est déclanchée par un appel à son nom (elle n'en a pas) mais parce que l'evènement auquel elle est attachée en tant que handler a été propagé
+                $("#bt1").on("click touchend", function (event) {
+                    // On pose dans les accolades de la fonction la ou les lignes d'instruction devant être executées si l'évènement est propagé, détecté dans la fenêtre du navigateur
+                    // Ici  on récupère l'objet dont l'id est message1 et à l'aide de la méthode html de jQuery(équivalente à innerHTML de javascript) on injecte le texte dans l'objet
+                    $("#message1").html("Ce message est ajouté par la méthode html de jQuery");
+                });
+                $("#bt2").on("click touchend", function (event) {
+                    $("#message1").prepend("Ce message est ajouté avant ce que contient déjà l'objet");
+                });
+                $("#bt3").on("click touchend", function (event) {
+                    $("#message1").append("Ce message est ajouté avant ce que contient déjà l'objet");
+                });
+            </script>
+        </div>
+        <!-- FIN DE QUATRIEME LIGNE -->
+        <!-- CINQUIEME LIGNE -->
+        <div class="row">
+            <p class="d-block w-100">
+                Saisissez un texte et validez pour le voir apparaître dans la zone de chat
+            </p>
+            <div class="col-10">
+                <div class="form-group">
+                    <label for="">Votre message :</label>
+                    <input type="text" name="" id="saisi-message" class="form-control">
+                </div>
+            </div>
+            <div class="col-2 d-flex align-items-center">
+                <button type="submit" class="btn btn-primary mt-3" id="bt-message">Envoyer</button>
+            </div>
+            <div class="col-12 my-3 bg-secondary text-light p-2" id="zone-chat"></div>
+            <button id="bt-reset" class="btn btn-success">Effacer les messages</button>
+            <script>
+                $("#bt-message").on("click touchend", function(event){
+                    // La méthode jQuery .val() permet de lire la valeur saisie par l'utilisateur dans un élément de formulaire matérialisé par la balise input
+                    // On mémorise la valeur récupérée avec .val() dans une variable afin de pouvoir manipuler cette donnée
+                    var messageSaisi = $("#saisi-message").val();
+                    if(messageSaisi==""){
+                        alert("Vous devez saisir un message fin de l'envoyer ");
+                    }else{
+                        $("#zone-chat").append("<p>"+messageSaisi+"</p>");
+                    }
+                    // Le message affiché est une balise html p dans laquelle se trouve notre message, on l'obtient par concaténation (addition) de chaine de caractères "<p>" ou "</p>" et de la variable messageSaisi
+                });
+                $("#bt-reset").on("click touchend", function(event){
+                    $("#zone-chat").html('')
+                });
+            </script>
+        </div>
+        <!-- FIN DE CINQUIEME LIGNE -->
+    </div>
+    <!-- FIN DE CONTENU -->
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

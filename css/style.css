@@ -1,0 +1,31 @@
+.accordeon h2{
+    background: #ccc;
+    cursor: pointer;
+    font-family: 'cookie';
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#840204+100,630101+100 */
+    background: #840204; /* Old browsers */
+    background: -moz-linear-gradient(left,  #840204 100%, #630101 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #840204 100%,#630101 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #840204 100%,#630101 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#840204', endColorstr='#630101',GradientType=1 ); /* IE6-9 */
+    text-shadow: 3px 3px 3px #171717;
+    color: white;
+}
+
+.accordeon .zone-texte{
+    font-family: 'lato', Arial, Helvetica, sans-serif;
+    /*height: 0;*/
+    overflow: hidden;
+    transition: all 1s;
+}
+
+.accordeon .bloc-contenu{
+    -webkit-box-shadow: 1px 1px 4px 3px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 4px 3px rgba(0,0,0,0.2);
+    margin: 20px 0;
+}
+
+.fa{
+    margin-left: 8px;
+    font-size: 1.2rem;
+}
